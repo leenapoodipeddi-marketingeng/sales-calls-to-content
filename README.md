@@ -38,28 +38,37 @@ talking points. Configurable per business via a company-context block in the pro
 
 ## Try it
 
+First, install dependencies and add your API key:
+
 ```bash
 pip install anthropic python-dotenv
 
-# add your Anthropic API key to a .env file in the repo root:
+# create a file named .env in the repo root containing:
 #   ANTHROPIC_API_KEY=sk-ant-...
+# (.env is gitignored, so your key is never committed)
+```
 
-# 1. extract pains from one call
+Then run the three stages. Each one writes a file the next stage reads:
+
+```bash
 cd customer-truth
+
+# 1. Extract pain points from one call.
+#    Prints the pains from the sample transcript.
 python extract.py interviews/sample-call.txt
 
-# 2. synthesize a brief across several calls
+# 2. Synthesize a brief across all summaries in the summaries/ folder.
+#    Saves the brief to synthesis/brief-<today>.md
 python synthesize.py summaries
 
-# 3. turn the brief into LinkedIn posts
+# 3. Turn a brief into LinkedIn posts.
+#    Point it at the brief from step 2 (or the included sample brief).
 cd ../content-engine
 python generate_posts.py ../customer-truth/synthesis/brief-sample.md 3
 ```
 
-## See it work
-
-Don't want to run anything? The `examples/` folder has real pipeline output
-generated from the sample data:
+Prefer to just see the output? The [`examples/`](examples/) folder has real
+pipeline output, pre-generated from the sample data:
 
 - [`examples/example-pain-extraction.md`](examples/example-pain-extraction.md) — pains pulled from one call
 - [`examples/example-linkedin-posts.md`](examples/example-linkedin-posts.md) — finished posts from the brief
