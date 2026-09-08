@@ -1,0 +1,87 @@
+# Marketing Engine
+
+A version-controlled system that turns raw sales calls into shippable marketing
+content. Built as a working example of *marketing engineering*: treating
+marketing workflows as reproducible, composable pipelines instead of one-off tasks.
+
+Vendor-neutral and industry-agnostic — the pattern works for any B2B company
+doing customer discovery.
+
+> **Note:** All data in this repo is fictional sample data (Northwind, Contoso).
+> Real customer information is kept out of version control by design — see
+> `.gitignore`.
+
+## The pipeline
+
+```
+sales calls  ->  extract pain points  ->  synthesize a brief  ->  generate content
+ (.txt)          (extract.py)             (synthesize.py)         (generate_posts.py)
+```
+
+Each stage writes a file the next stage reads. Prompts live as versioned `.md`
+files, treated as code — improve one, commit it, and every future run uses the
+new logic.
+
+## What each piece does
+
+**`customer-truth/extract.py`** — reads one call transcript and pulls the 2-3
+pain points the prospect expressed, in their own words.
+
+**`customer-truth/synthesize.py`** — reads a whole folder of call summaries and
+produces ONE positioning brief showing what prospects care about *across* calls:
+ranked pains with frequency counts, the language they actually use, objections,
+and a positioning hypothesis. A single call summary can't give you this.
+
+**`content-engine/generate_posts.py`** — reads a brief and drafts LinkedIn posts
+anchored in the real pains and real language the brief captured — not generic
+talking points. Configurable per business via a company-context block in the prompt.
+
+## Try it
+
+```bash
+pip install anthropic python-dotenv
+
+# add your Anthropic API key to a .env file in the repo root:
+#   ANTHROPIC_API_KEY=sk-ant-...
+
+# 1. extract pains from one call
+cd customer-truth
+python extract.py interviews/sample-call.txt
+
+# 2. synthesize a brief across several calls
+python synthesize.py summaries
+
+# 3. turn the brief into LinkedIn posts
+cd ../content-engine
+python generate_posts.py ../customer-truth/synthesis/brief-sample.md 3
+```
+
+## See it work
+
+Don't want to run anything? The `examples/` folder has real pipeline output
+generated from the sample data:
+
+- [`examples/example-pain-extraction.md`](examples/example-pain-extraction.md) — pains pulled from one call
+- [`examples/example-linkedin-posts.md`](examples/example-linkedin-posts.md) — finished posts from the brief
+
+## Why a pipeline instead of a chatbot?
+
+A chat is great for one-off drafts. A pipeline gives you four things a chat can't:
+consistent versioned prompts, scale (a folder of 3 or 300 calls, same command),
+automation (it can run without a human), and composition (each step's output
+feeds the next). The chat is the R&D lab; the repo is the production line.
+
+## Design principles
+
+- **Prompts are code.** Versioned `.md` files, improved deliberately, not buried
+  in chat history.
+- **Customer truth feeds everything.** Content is grounded in what prospects
+  actually said, not assumptions.
+- **Sensitive data never enters version control.** A whitelist `.gitignore`
+  blocks all real transcripts and briefs by default; only named sample files pass.
+
+## Roadmap
+
+See `LEARNING.md` for the skill-by-skill build path. Next up: a voice layer so
+generated content matches a specific person's tone, and scheduled automation so
+briefs regenerate as new calls land.

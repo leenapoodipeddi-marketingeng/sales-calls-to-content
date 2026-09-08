@@ -1,0 +1,35 @@
+# ============================================================
+# SECRETS — never commit
+# ============================================================
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+credentials.json
+
+# ============================================================
+# REAL CUSTOMER DATA — never commit
+# Only files explicitly named "sample-*" are allowed through.
+# Everything else in these folders is ignored by default.
+# ============================================================
+customer-truth/interviews/*
+customer-truth/summaries/*
+customer-truth/synthesis/*
+content-engine/output/*
+
+# ...but DO allow the sample/demo files (whitelist):
+!customer-truth/interviews/sample-call.txt
+!customer-truth/summaries/sample-call-northwind.txt
+!customer-truth/summaries/sample-call-contoso.txt
+!customer-truth/synthesis/brief-sample.md
+
+# ============================================================
+# Python / OS junk
+# ============================================================
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+[Sample transcript — fictional, for demonstration only]
+
+Salesperson: Thanks for hopping on. What made you look into switching?
+
+Prospect: Honestly, it's the support. When something breaks with our current
+vendor, we open a ticket and just wait. Sometimes days. And we're a small team,
+so when the system goes down, our work stops. We lost a customer last month
+because something failed silently and nobody caught it.
+
+Salesperson: That sounds stressful. How are you handling it now?
+
+Prospect: I've basically become the go-to person for this by accident, which is
+strange because it's not even my job. I don't fully understand what's happening
+under the hood. And the pricing is another thing — I never know what our bill's
+going to be. It jumps around and there's always some fee I didn't expect. I
+can't plan for it.
+
+Salesperson: Got it. So predictability and support are the big themes.
+
+Prospect: Yeah. If something breaks I just want a human who picks up and fixes
+it. And I want to know what I'm paying. That's it, really.

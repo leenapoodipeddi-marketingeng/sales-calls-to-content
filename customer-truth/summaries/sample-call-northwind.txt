@@ -1,0 +1,14 @@
+[SAMPLE — fictional company, for demonstration only]
+
+Call with Northwind Traders — discovery call.
+
+Prospect runs operations at a mid-size company. Currently on a large legacy
+vendor. Main frustration: support. When something breaks, tickets sit for days
+and work stops. Lost a customer last month because a failure went unnoticed.
+
+Also mentioned pricing unpredictability — surprise fees that make the monthly
+bill impossible to forecast. Said "I never know what we're going to pay."
+
+Prospect has effectively become the go-to person for this by accident, despite
+it not being their role. Wants a human who picks up the phone when things break,
+and predictable pricing. Nervous about switching during their busy season.

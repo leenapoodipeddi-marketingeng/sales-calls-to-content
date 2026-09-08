@@ -1,0 +1,14 @@
+[SAMPLE — fictional company, for demonstration only]
+
+Call with Contoso Inc — evaluation call.
+
+Prospect is a small company running an aging system maintained by a single
+long-tenured employee who is close to retirement. Big single-point-of-failure
+risk — nobody else understands how it works.
+
+Wants to modernize but is worried about a botched migration disrupting customer
+relationships. Has a hard deadline in the fall. Values "white glove"
+hand-holding through the switch over raw feature lists.
+
+Evaluating a few big-name vendors but worried they'll be a small account and get
+ignored in a large provider's support queue.
