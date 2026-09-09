@@ -1,11 +1,10 @@
 # Marketing Engine
 
-A version-controlled system that turns raw sales calls into shippable marketing
-content. Built as a working example of *marketing engineering*: treating
-marketing workflows as reproducible, composable pipelines instead of one-off tasks.
+A version-controlled system that turns raw sales calls into shippable marketing content — grounded in what customers actually say, and written in a specific person's voice. Built as a working example of marketing engineering: treating marketing workflows as reproducible, composable pipelines instead of one-off tasks.
 
-Vendor-neutral and industry-agnostic — the pattern works for any B2B company
-doing customer discovery.
+It runs in four stages: pull the real pain points out of a sales call, synthesize them into a positioning brief across many calls, then generate content from that brief — either in a neutral tone or in a founder's own voice, captured from their real writing.
+
+Vendor-neutral and industry-agnostic — the pattern works for any B2B company doing customer discovery.
 
 > **Note:** All data in this repo is fictional sample data (Northwind, Contoso).
 > Real customer information is kept out of version control by design — see
