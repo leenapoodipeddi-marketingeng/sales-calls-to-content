@@ -1,8 +1,14 @@
 # Marketing Engine
 
 A version-controlled system that turns raw sales calls into shippable marketing
-content. Built as a working example of *marketing engineering*: treating
+content — grounded in what customers actually say, and written in a specific
+person's voice. Built as a working example of *marketing engineering*: treating
 marketing workflows as reproducible, composable pipelines instead of one-off tasks.
+
+It runs in four stages: pull the real pain points out of a sales call, synthesize
+them into a positioning brief across many calls, then generate content from that
+brief — either in a neutral tone or in a founder's own voice, captured from their
+real writing.
 
 Vendor-neutral and industry-agnostic — the pattern works for any B2B company
 doing customer discovery.
@@ -56,23 +62,23 @@ pip install anthropic python-dotenv
 # (.env is gitignored, so your key is never committed)
 ```
 
-Then run the three stages. Each one writes a file the next stage reads:
+Then run the stages. Each one writes a file the next stage reads:
 
 ```bash
 cd customer-truth
 
 # 1. Extract pain points from one call.
-#    Prints the pains from the sample transcript.
 python extract.py interviews/sample-call.txt
 
 # 2. Synthesize a brief across all summaries in the summaries/ folder.
-#    Saves the brief to synthesis/brief-<today>.md
 python synthesize.py summaries
 
-# 3. Turn a brief into LinkedIn posts.
-#    Point it at the brief from step 2 (or the included sample brief).
+# 3. Turn a brief into LinkedIn posts (generic voice).
 cd ../content-engine
 python generate_posts.py ../customer-truth/synthesis/brief-sample.md 3
+
+# 4. Or generate posts in a specific person's voice, using a voice profile.
+python generate_posts_voiced.py ../customer-truth/synthesis/brief-sample.md ../founder-voice/voice-profile-sample.md 3
 ```
 
 Prefer to just see the output? The [`examples/`](examples/) folder has real
@@ -80,6 +86,7 @@ pipeline output, pre-generated from the sample data:
 
 - [`examples/example-pain-extraction.md`](examples/example-pain-extraction.md) — pains pulled from one call
 - [`examples/example-linkedin-posts.md`](examples/example-linkedin-posts.md) — finished posts from the brief
+- [`examples/example-linkedin-posts-voiced.md`](examples/example-linkedin-posts-voiced.md) — the same brief, written in a specific person's voice
 
 ## Why a pipeline instead of a chatbot?
 
@@ -97,8 +104,24 @@ feeds the next). The chat is the R&D lab; the repo is the production line.
 - **Sensitive data never enters version control.** A whitelist `.gitignore`
   blocks all real transcripts and briefs by default; only named sample files pass.
 
-## Roadmap
+## Where this becomes a product
 
-See `LEARNING.md` for the skill-by-skill build path. Next up: a voice layer so
-generated content matches a specific person's tone, and scheduled automation so
-briefs regenerate as new calls land.
+This repo is the working core. For a company, the same architecture extends into
+a system that runs quietly in the background and compounds over time:
+
+- **Always-on customer truth.** New sales calls flow in automatically; the brief
+  updates itself. Your positioning stays current with what prospects are saying
+  *this month*, not last quarter.
+- **Content on tap, in your voice.** A steady stream of on-message posts and
+  emails drafted in a specific founder's or brand's voice — ready to review, not
+  write from scratch.
+- **A feedback loop.** Track which messages actually land, feed the winners back
+  into the prompts, and the system gets sharper every cycle.
+- **One source of truth.** Customer language, positioning, and content all trace
+  back to real conversations — versioned, auditable, and owned by you.
+
+The public repo shows the method. Building and running it for a specific
+business — wired into their call recorder, their voice, their channels — is the
+engagement.
+
+*See `LEARNING.md` for the build path behind it.*
