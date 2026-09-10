@@ -125,3 +125,8 @@ business — wired into their call recorder, their voice, their channels — is 
 engagement.
 
 *See `LEARNING.md` for the build path behind it.*
+## License
+
+MIT — use it, fork it, build on it. The method is open on purpose.
+
+Building and running this system for a specific business — wired into their calls, their voice, their channels — is the work I do. If that's useful to you, let's talk - https://calendly.com/striveroi/consult-with-leena
